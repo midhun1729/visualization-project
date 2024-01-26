@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>SLCTraffic Map Prototype</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+</head>
+
+<body>
+  <nav>
+    <a href="index.html">Dashboard</a>
+    <a href="statistics/index1.html">Statistics</a>
+    <!-- <a href="data.html">Data</a> -->
+  </nav>
+  <div id="visualization">
+    <div id="map-visualization">
+      <div id="map"></div>
+  
+      <div class="dateinputs">
+        <input type="date" id="datepicker" value="2022-01-01" min="2022-01-01" max="2022-01-31" required onchange="datepickerChange(event)">
+        <input type="time" id="timepicker" value="00:00:00" step="3600" required onchange="timepickerChange(event)">
+        <input type="range" id="daterange" value="0" min="0" max="743" onchange="daterangeChange(event)">
+      </div>
+      
+      <div id="extraMapFeatures">
+        <div>
+          <button id="startAnimationButton" onclick="startAnimation()">Start Animation</button>
+          <button id="stopAnimationButton" onclick="stopAnimation()">Stop Animation</button>  
+        </div>
+        <button id="changeLayoutButton" onclick="changeMapLayout()">Change Map Layout</button>
+      </div>  
+    </div>  
+    
+    <div id="stat-visualization">
+      <svg id="graph">
+        <g id="lines"></g>
+        <g id="x-axis"></g>
+        <g id="y-axis"></g>
+        <g id="overlay">
+          <line class="line" id="currentTime"></line>
+          <line class="line" id="currentTimeBounds"></line>
+        </g>
+        
+        <text class="xlabel-middle">Date & Time</text>
+        <text class="xlabel-left">Start Time</text>
+        <text class="xlabel-right">End Time</text>
+        <text class="ylabel">Traffic Volume (Cars per Hour)</text>
+      </svg>
+      
+      <div class="dateinputs" id="graphdate">
+        <div>
+          <input type="date" value="2022-01-01" min="2022-01-01" max="2022-01-31" required>
+          <input type="time" value="00:00:00" step="3600" required>  
+        </div>
+        <div>
+          <button>Reset</button>
+        </div>
+        <div>
+          <input type="date" value="2022-01-31" min="2022-01-01" max="2022-01-31" required>
+          <input type="time" value="23:00:00" step="3600" required>  
+        </div>
+
+  <div id="map-visualization">
+    <div id="map"></div>
+
+    <div id="dateinputs">
+      <input type="date" id="datepicker" value="2022-01-01" min="2022-01-01" max="2022-01-31" required onchange="datepickerChange(event)">
+      <input type="time" id="timepicker" value="00:00:00" step="3600" required onchange="timepickerChange(event)">
+      <input type="range" id="daterange" value="0" min="0" max="743" onchange="daterangeChange(event)">
+    </div>
+
+    <!-- <div id="extraMapFeatures">
+      <button id="changeLayoutButton" onclick="changeMapLayout()">Change Map Layout</button>
+
+      <div>
+        <button id="startAnimationButton" onclick="startAnimation()">Start Animation</button>
+        <button id="stopAnimationButton" onclick="stopAnimation()">Stop Animation</button>  
+ </div> -->
+    </div>
+  </div>
+  
+
+<!-- <a href="statistics/index1.html">Visit statistics</a> -->
+
+  <script src="js/map.js"></script>
+  <script src="js/animation.js"></script>
+  <script src="js/datetimepicker.js"></script>
+  <script src="js/graph.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+</html>

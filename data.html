@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Data Viewer</title>
+  <link rel="stylesheet" href="style.css">
+
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 20px;
+      text-align: center;
+      background-color: #f5f5f5;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    h2 {
+      color: #555;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 80%;
+      margin: 20px auto;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #4CAF50;
+      color: white;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    pre {
+      white-space: pre-wrap;
+      background-color: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+<body>
+    <nav>
+        <a href="index.html">Dashboard</a>
+        <a href="statistics/index1.html">Statistics</a>
+        <a href="/site/data.html">Data</a>
+      </nav>
+  <h1>Data Viewer</h1>
+
+  <div id="csvData1">
+    <h2>Data from data1.csv</h2>
+    <table id="table1">
+      <!-- Table content will be inserted here dynamically -->
+    </table>
+  </div>
+
+  <div id="csvData2">
+    <h2>Data from data2.csv</h2>
+    <table id="table2">
+      <!-- Table content will be inserted here dynamically -->
+    </table>
+  </div>
+
+  <div id="jsonData">
+    <h2>Data from data.json</h2>
+    <pre id="jsonContent">
+      <!-- JSON content will be inserted here dynamically -->
+    </pre>
+  </div>
+
+  <script>
+    // Function to fetch and display CSV data
+    function displayCSV(url, tableId) {
+      fetch(url)
+        .then(response => response.text())
+        .then(data => {
+          const rows = data.split('\n');
+          const table = document.getElementById(tableId);
+
+          // Clear existing table content
+          table.innerHTML = '';
+
+          // Create table header
+          const headerRow = document.createElement('tr');
+          const headers = ['S.No', ...rows[0].split(',')];
+          headers.forEach(header => {
+            const th = document.createElement('th');
+            th.textContent = header;
+            headerRow.appendChild(th);
+          });
+          table.appendChild(headerRow);
+
+          // Create table rows
+          for (let i = 1; i < rows.length; i++) {
+            const row = document.createElement('tr');
+            const values = [i, ...rows[i].split(',')];
+            values.forEach(value => {
+              const td = document.createElement('td');
+              td.textContent = value;
+              row.appendChild(td);
+            });
+            table.appendChild(row);
+          }
+        })
+        .catch(error => console.error('Error fetching CSV:', error));
+    }
+
+    // Function to fetch and display JSON data
+    function displayJSON(url, elementId) {
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          const element = document.getElementById(elementId);
+          element.textContent = JSON.stringify(data, null, 2);
+        })
+        .catch(error => console.error('Error fetching JSON:', error));
+    }
+
+    // Display CSV data
+    displayCSV('data/data.csv', 'table1');
+    displayCSV('data/metadata.csv', 'table2');
+
+    // Display JSON data
+    displayJSON('data/routeData.json', 'jsonContent');
+  </script>
+
+</body>
+
+</html>

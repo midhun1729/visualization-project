@@ -1,0 +1,119 @@
+html, body {
+    height: 100%;
+}
+
+#visualization {
+    display: flex;
+    flex-flow: row;
+    height: 100%;
+}
+
+#map-visualization {
+    display: flex;
+    flex-flow: column;
+    flex: 1;
+    min-width: 840px;
+}
+
+#map {
+	flex: 1;
+}
+#extraMapFeatures {
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+.dateinputs {
+    flex-flow: row;
+    display: flex;
+}
+#daterange {
+    flex-grow: 1;
+}
+
+#stat-visualization {
+    display: flex;
+    flex: 1 1;
+    flex-flow: column;
+    height: 100%;
+    min-height: 200px;
+}
+
+#graph {
+    height: 100%;
+    width: 100%;
+}
+.line {
+    fill: none;
+    stroke-width: 2;
+}
+#currentTime {
+    stroke: black;
+    stroke-width: 3px;
+}
+#currentTimeBounds {
+    stroke: red;
+    opacity: 0;
+    stroke-width: 10px;
+}
+.xlabel-middle {
+    text-anchor: middle;
+}
+.xlabel-right {
+    text-anchor: end;
+}
+.ylabel {
+    text-anchor: middle;
+}
+.popup > rect {
+    background: black;
+    opacity: .65;
+    stroke: black;
+    stroke-opacity: .25;
+    stroke-width: 4px;
+    border-radius: 5px;
+}
+.popup > text {
+    text-shadow: 1px 1px 2px black;
+}
+
+
+#graphdate {
+    justify-content: space-between;
+}
+
+
+@media only screen and (max-width: 1400px) {
+    #visualization {
+        flex-flow: column;
+    }
+    
+    #map-visualization {
+        min-width: unset;
+    }
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+  }
+  
+  nav {
+    background-color: #333;
+    overflow: hidden;
+  }
+  
+  nav a {
+    float: left;
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  nav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
